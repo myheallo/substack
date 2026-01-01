@@ -1,1 +1,199 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriber Access | HEALLOMYBODY®</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #3A6B62; /* Green from JEZ */
+            --accent: #D65A49;  /* Red from JEZ */
+            --bg: #FDFBF6;
+            --text: #2C3635;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Changed from height to min-height for mobile */
+            text-align: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(58, 107, 98, 0.15);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.5rem;
+            text-align: center;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            letter-spacing: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            outline: none;
+            transition: 0.3s;
+            color: var(--primary);
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(58, 107, 98, 0.1);
+        }
+
+        input:not(:placeholder-shown) {
+            letter-spacing: 8px; 
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2a524a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(58, 107, 98, 0.2);
+        }
+
+        .error-msg {
+            color: #d9534f;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* --- STYLE FOR DISCLAIMER (NEW) --- */
+        .disclaimer-box {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: left;
+            font-size: 0.75rem;
+            color: #888;
+            line-height: 1.5;
+        }
+        
+        .disclaimer-box strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .disclaimer-box ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .disclaimer-box li {
+            margin-bottom: 5px;
+        }
+        
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h1>Welcome to the Member Section</h1>
+        <p>Enter your 8-digit access code to unlock content.</p>
+
+        <form id="accessForm">
+            <div class="input-group">
+                <input type="text" id="passcode" placeholder="••••••••" maxlength="20" autocomplete="off" required>
+            </div>
+            
+            <button type="submit" class="btn">Unlock</button>
+            
+            <div id="errorMsg" class="error-msg">
+                Page with this code was not found. Please check the code.
+            </div>
+        </form>
+
+        <div class="disclaimer-box">
+            <strong>⚠️ Important Notice:</strong>
+            <p>By entering the code and accessing this section, you confirm that you agree to the following:</p>
+            <ul>
+                <li><strong>Copyright:</strong> All content (audio, texts, PDFs) is protected by copyright and is intended exclusively for your personal use. Further distribution, copying, or sharing is prohibited.</li>
+                <li><strong>Educational Purpose:</strong> The author is not a medical doctor. The provided materials are of an educational and self-development nature only and do not replace professional medical care, diagnosis, or psychotherapy.</li>
+            </ul>
+        </div>
+
+        <div class="footer-note">
+            HEALLOMYBODY®
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('accessForm');
+        const input = document.getElementById('passcode');
+        const errorMsg = document.getElementById('errorMsg');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            let code = input.value.trim().toLowerCase();
+
+            if (code) {
+                // Redirects to page [code].html
+                window.location.href = code + ".html";
+            }
+        });
+    </script>
+
+</body>
+</html>
